@@ -1,13 +1,13 @@
 class Probability {
 
-    constructor( items = [ ], { settings } = { } ) {
+    constructor( ...args ) {
 
-        this.items = items
-        this.settings = settings || { maxPercent: 100 }
+        this.args = args
+        this.settings = { maxPercent: 100 }
 
         let totalPercent = 0
 
-        this.items.forEach( ( object ) => {
+        this.args.forEach( ( object ) => {
 
             if( typeof object !== 'object' ) {
 
@@ -41,7 +41,7 @@ class Probability {
 
         this.list = [ ]
 
-        this.items.forEach( ( object ) => {
+        this.args.forEach( ( object ) => {
 
             this.list = this.list.concat( ...Array( parseInt( object.percent ) ).fill( object.item ) )
 
@@ -57,19 +57,19 @@ class Probability {
 
     max() {
 
-        return this.items.reduce( ( objectPrev, objectNext ) => parseInt( objectPrev.percent ) > parseInt( objectNext.percent ) ? objectPrev : objectNext )
+        return this.args.reduce( ( objectPrev, objectNext ) => parseInt( objectPrev.percent ) > parseInt( objectNext.percent ) ? objectPrev : objectNext )
 
     }
 
     min() {
 
-        return this.items.reduce( ( objectPrev, objectNext ) => parseInt( objectPrev.percent ) < parseInt( objectNext.percent ) ? objectPrev : objectNext )
+        return this.args.reduce( ( objectPrev, objectNext ) => parseInt( objectPrev.percent ) < parseInt( objectNext.percent ) ? objectPrev : objectNext )
 
     }
 
     get( index ) {
 
-        return this.items[index]
+        return this.args[index]
 
     }
 
